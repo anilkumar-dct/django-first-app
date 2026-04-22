@@ -1,0 +1,3 @@
+Django admin is built in admin panel, help us to manage our database and table.
+such create delete update database without writing database query
+And django user name password is considered as superuser.
