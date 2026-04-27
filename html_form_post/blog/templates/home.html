@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Welcome to the Blog Home Page</h1>
+    <p>This is where you can find all the latest posts and updates from our blog.</p>
+    <form action="/blog/home/" method="post">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Enter post title">
+        <textarea name="content" placeholder="Enter post content"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
