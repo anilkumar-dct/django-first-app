@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Form -->
+  <form id="todoForm", method="POST" action="{% url 'create_todo' %}">
+    {% csrf_token %}
+    <input type="text" id="title" name="title" placeholder="Title" required>
+    <textarea id="description" name="description" placeholder="Description"></textarea>
+
+    <label>
+      <input type="checkbox" id="completed" name="completed">
+      Completed
+    </label><br><br>
+
+    <button type="submit">Add Todo</button>
+  </form>
+{% endblock %}

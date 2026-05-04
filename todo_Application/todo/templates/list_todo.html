@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Todo List</h2>
+<a href="{% url 'create_todo' %}">
+                    <button type="button">add</button>
+                </a>
+    <!-- Todo List -->
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for t in todos %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ t.title }}</td>
+        <td>{{ t.description }}</td>
+        <td class="{% if t.completed %}completed{% else %}pending{% endif %}">
+            {% if t.completed %}Completed{% else %}Pending{% endif %}
+        </td>
+        <td>
+            <!-- Edit -->
+            <a href="{% url 'update_todo' t.id %}">
+                <button type="button">Edit</button>
+            </a>
+
+            <!-- Delete -->
+            <form method="POST"
+                  action="{% url 'delete_todo' t.id %}"
+                  style="display:inline;">
+                {% csrf_token %}
+                <button type="submit"
+                        onclick="return confirm('Delete this todo?')">
+                    Delete
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock %}

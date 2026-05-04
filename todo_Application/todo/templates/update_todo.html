@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Form -->
+  <form id="todoForm", method="POST" action="{% url 'update_todo' todo.id %}">
+    {% csrf_token %}
+    <input type="text" id="title" name="title" value="{{ todo.title }}" placeholder="Title" required>
+    <textarea id="description" name="description" placeholder="Description">{{ todo.description }}</textarea>
+
+    <label>
+      <input type="checkbox" id="completed" name="completed" {% if todo.completed %}checked{% endif %}>
+      Completed
+    </label><br><br>
+
+    <button type="submit">Update Todo</button>
+  </form>
+{% endblock %}
